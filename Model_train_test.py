@@ -38,7 +38,7 @@ from sklearn.metrics import *
 
 
 class_names=["Acne", "Atopic Dermatitis", "Bullous Dieases", "cancer", "other"]
-path_to_all_dataset="/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/testset/"
+path_to_all_dataset=""
 
 
 '''
@@ -60,8 +60,8 @@ for i in class_names:
 
 
 
-path_to_training_dataset="/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Test_Val_Data/train/"
-path_to_val_dataset="/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Test_Val_Data/val/"
+path_to_training_dataset="/Test_Val_Data/train/"
+path_to_val_dataset="/Test_Val_Data/val/"
 
 
 ## Convert whole image names to suitable names
@@ -105,13 +105,13 @@ for class_name in class_names:
 
 '''
 # Creating training and test data based on test folder
-path_to_train_val_dataset="/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Test_Val_Data/"
+path_to_train_val_dataset="/Test_Val_Data/"
 splitfolders.ratio(path_to_all_dataset, output=path_to_train_val_dataset, ratio=(.8, .2))
 '''
 
 
-path_to_training_dataset="/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Test_Val_Data/train/"
-path_to_val_dataset="/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Test_Val_Data/val/"
+path_to_training_dataset="/Test_Val_Data/train/"
+path_to_val_dataset="/Test_Val_Data/val/"
 
 data_dir_train = pathlib.Path(path_to_training_dataset)
 img_height,  img_width  = 224, 224
@@ -296,7 +296,7 @@ reduce_lr =  keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5,
                               patience=3, min_lr=0.00001)
 
 
-saved_checkpoints= '/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Saved_Checkpoints/best_checkpoint_model.h5'
+saved_checkpoints= '/best_checkpoint_model.h5'
 checkpoint = ModelCheckpoint(saved_checkpoints, save_best_only= True, monitor = 'val_loss')
 
 
@@ -343,7 +343,7 @@ def train():
                         )
 
 
-    final_model_path= '/home/yck/Desktop/GITHUB/Bayesian Reinforcement Learning/MULTICLASS_CLASSIFICATION/A-Multi-Model-Deep-Learning-for-Diagnosing-Skin-Diseases/Saved_Checkpoints/final_model.h5'
+    final_model_path= '/final_model.h5'
     #model.save_weights(final_model_path)
     model.save(final_model_path)
     print('Model saved.')
@@ -396,10 +396,7 @@ def test():
         print(f"{class_name} AUC: {class_auc:.4f}")
 
     
-    print('stop')
-
-
-
+   
 if __name__ == "__main__":
     
     
